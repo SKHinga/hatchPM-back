@@ -1,2 +1,2 @@
-web: bundle exec rake config.ru
+web: bundle exec rackup config.ru
 release: bundle exec rake db:migrate
