@@ -8,6 +8,10 @@ gem "sinatra", "~> 2.1"
 # https://github.com/macournoyer/thin
 gem "thin", "~> 1.8"
 
+gem "pg"
+
+gem "puma"
+
 # Rack middleware. Used specifically for parsing the request body into params.
 # https://github.com/rack/rack-contrib
 gem "rack-contrib", "~> 2.3"
@@ -29,7 +33,7 @@ gem "sinatra-activerecord", "~> 2.0"
 gem "rake", "~> 13.0"
 
 # Provides functionality to interact with a SQLite3 database
-gem "sqlite3", "~> 1.4"
+# gem "sqlite3", "~> 1.4"
 
 # Require all files in a folder
 gem "require_all", "~> 3.0"

@@ -3,6 +3,9 @@ class ApplicationController < Sinatra::Base
   
   # Add your routes here
   get "/" do
+    # User.create(first_name: "Wiky api")
+    # users = User.all
+    # users.to_json
     { message: "Good luck with your project!" }.to_json
   end
 
