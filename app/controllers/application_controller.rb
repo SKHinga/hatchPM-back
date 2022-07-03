@@ -47,6 +47,7 @@ class ApplicationController < Sinatra::Base
       token = JWT.encode payload, nil, 'HS256'
 
       {token: token}.to_json
+    end
   end
 
   post "/signup" do
@@ -81,6 +82,7 @@ class ApplicationController < Sinatra::Base
     token = JWT.encode payload, nil, 'HS256'
 
     {token: token}.to_json
+    end
   end
 
   post "/projects" do
