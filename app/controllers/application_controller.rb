@@ -52,17 +52,13 @@ class ApplicationController < Sinatra::Base
 
   post "/signup" do
 
-    if params[:email].empty? || params[:password].empty?
+    if params[:first_name].empty? || params[:last_name].empty? || params[:email].empty? || params[:password].empty?
       return {statusCode: 400, message: "Please fill in all the fields"}.to_json
-    else
-      user = User.find_by(email: params[:email])
-      if !user
-        return {statusCode: 400, message: "Account does not exist, Please signup."}.to_json
-      end
-      if user && user.password != params[:password]
-        return {statusCode: 400, message: "Wrong password/email."}.to_json
-      end
-
+    elsif User.find_by(email: params[:email])
+      return {statusCode: 409, message: "User #{params[:email]} already exists."}.to_json
+    elsif params[:password].length < 6
+      return {statusCode: 409, message: "Password must be atleast 6 characters or more."}.to_json
+    end
     user = User.create(
       first_name: params[:first_name],
       last_name: params[:last_name],
@@ -82,7 +78,6 @@ class ApplicationController < Sinatra::Base
     token = JWT.encode payload, nil, 'HS256'
 
     {token: token}.to_json
-    end
   end
 
   post "/projects" do
