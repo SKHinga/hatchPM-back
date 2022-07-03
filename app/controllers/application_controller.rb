@@ -24,15 +24,63 @@ class ApplicationController < Sinatra::Base
     task.to_json(include: :tasks)
   end
 
-  post "/users" do
-    person = User.create(
+  post "/signin" do
+    if params[:email].empty? || params[:password].empty?
+      return {statusCode: 400, message: "Please fill in all the fields"}.to_json
+    else
+      user = User.find_by(email: params[:email])
+      if !user
+        return {statusCode: 400, message: "Account does not exist, Please signup."}.to_json
+      end
+      if user && user.password != params[:password]
+        return {statusCode: 400, message: "Wrong password/email."}.to_json
+      end
+      payload = {
+        userId: user[:id],
+        first_name: user[:first_name],
+        last_name: user[:last_name],
+        gender: user[:gender],
+        email: user[:email],
+        password: user[:password]
+      }
+
+      token = JWT.encode payload, nil, 'HS256'
+
+      {token: token}.to_json
+  end
+
+  post "/signup" do
+
+    if params[:email].empty? || params[:password].empty?
+      return {statusCode: 400, message: "Please fill in all the fields"}.to_json
+    else
+      user = User.find_by(email: params[:email])
+      if !user
+        return {statusCode: 400, message: "Account does not exist, Please signup."}.to_json
+      end
+      if user && user.password != params[:password]
+        return {statusCode: 400, message: "Wrong password/email."}.to_json
+      end
+
+    user = User.create(
       first_name: params[:first_name],
       last_name: params[:last_name],
       gender: params[:gender],
       email: params[:email],
       password: params[:password]
     )
-    person.to_json
+
+    payload = {
+      userId: user[:id],
+      first_name: user[:first_name],
+      last_name: user[:last_name],
+      gender: user[:gender],
+      email: user[:email],
+      password: user[:password]
+    }
+    token = JWT.encode payload, nil, 'HS256'
+
+    {token: token}.to_json
   end
 
   post "/projects" do
