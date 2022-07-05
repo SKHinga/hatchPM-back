@@ -1,9 +1,8 @@
-# Phase 3 Project Guidelines
+# Hatch PM Project back-end
 
-## Learning Goals
+## Front-end link
 
-- Build a web basic API with Sinatra and Active Record to support a React
-  frontend
+- [Front-end](https://github.com/SKHinga/HatchPM)
 
 ## Introduction
 
