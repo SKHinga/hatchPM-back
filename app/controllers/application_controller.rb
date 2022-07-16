@@ -121,6 +121,14 @@ class ApplicationController < Sinatra::Base
     update_project.to_json
   end
 
+  patch "/tasks/:id" do
+    update_task = Project.find(params[:id])
+    update_task.update(
+      check: params[:check]
+    )
+    update_task.to_json
+  end
+
   delete "/projects/:id" do
     project = Project.find(params[:id])
     project.destroy
