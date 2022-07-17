@@ -112,10 +112,6 @@ class ApplicationController < Sinatra::Base
   patch "/projects/:id" do
     update_project = Project.find(params[:id])
     update_project.update(
-      project_name: params[:project_name],
-      project_scope: params[:project_scope],
-      deadline: params[:deadline],
-      description: params[:description],
       progress: params[:progress]
     )
     update_project.to_json
