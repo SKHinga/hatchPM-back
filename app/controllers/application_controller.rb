@@ -122,7 +122,7 @@ class ApplicationController < Sinatra::Base
   end
 
   patch "/tasks/:id" do
-    update_task = Project.find(params[:id])
+    update_task = Task.find(params[:id])
     update_task.update(
       check: params[:check]
     )
