@@ -1,16 +1,21 @@
 default: &default
   adapter: postgresql
+  encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   timeout: 5000
+  username: postgres
+  password: <%= ENV['DATABASE_PASSWORD'] %>
+  host: localhost
 
 development:
   <<: *default
-  url: "postgresql://postgres:postgres@localhost:5432/postgres"
+  database: myapp_development
 
 test:
   <<: *default
-  url: "postgresql://postgres:postgres@localhost:5432/test/postgres"
+  database: myapp_test
 
 production:
   <<: *default
-  url: <%= ENV['DATABASE_URL'] %>
+  database: myapp_production
+
