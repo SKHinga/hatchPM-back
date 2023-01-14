@@ -1,10 +1,8 @@
-name: hatchPM-back
-git:
-  branch: main
+version: 2
+env_vars:
+  DATABASE_URL: postgres://postgres:<%= ENV['DATABASE_PASSWORD'] %>@localhost:5432/myapp_production
 services:
-  - name: web
-    command: bundle exec puma -p $PORT
-    ports:
-      - 80:3000
-    env:
-      DATABASE_URL: postgres://postgres:<%= ENV['DATABASE_PASSWORD'] %>@localhost:5432/myapp_production
+- name: web
+  command: bundle exec puma -p $PORT
+  ports:
+    - 80:3000
