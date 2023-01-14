@@ -2,7 +2,7 @@ version: 2
 env_vars:
   DATABASE_URL: postgres://postgres:<%= ENV['DATABASE_PASSWORD'] %>@localhost:5432/myapp_production
 services:
-- name: web
+- type: web
   command: bundle exec puma -p $PORT
   ports:
     - 80:3000
