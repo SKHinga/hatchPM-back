@@ -1,4 +1,4 @@
-name: phase-3-sinatra-react-project
+name: hatchPM-back
 git:
   branch: main
 services:
