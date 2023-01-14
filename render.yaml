@@ -1,7 +1,7 @@
 databases:
-  - name: 
+  - name: hatchPM-back
     databaseName: myapp
-    user: postgres
+    user: myapp
 
 services:
   - type: web
